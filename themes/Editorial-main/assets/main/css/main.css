@@ -3366,5 +3366,13 @@ figcaption {
 .facebook-share-button:hover {
     background-color: #155a9e;
 }
+#timer {
+  color: #FF1A75;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  font-weight:bold;
+}
 
 /*# sourceMappingURL=main.css.map */
