@@ -3,102 +3,92 @@
 into the {body} of the default.hbs template --}}
 
 {{#post}}
-{{!-- Everything inside the #post tags pulls data from the post --}}
-<section>
+<section class="post-layout">
+    <!-- Right side: Post Content -->
+    <div class="post-content">
 
-
-{{#if feature_image}}
-    <!--    {{#if custom_excerpt}}
-            <p class="content">{{custom_excerpt}}</p>
-        {{/if}}-->
-<figure class="image main">
-    <img src="{{img_url feature_image size="m"}}" 
-         srcset="{{img_url feature_image size="s"}} 300w,
-                 {{img_url feature_image size="m"}} 600w,
-                 {{img_url feature_image size="l"}} 900w"
-         sizes="(max-width: 600px) 300px,
-                (max-width: 900px) 600px,
-                900px"
-         alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" 
-         loading="lazy" />
-    {{#if feature_image_caption}}
-        <figcaption>{{feature_image_caption}}</figcaption>
-    {{/if}}
-</figure>
-{{/if}}
-
-
-    <header class="main content">
-            <div class="author-section">
-                
-        {{#foreach authors}}
-        <div class="author-info">
-            {{#if profile_image}}
-            <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+        <!-- Featured Image -->
+        {{#if feature_image}}
+        <figure class="image main">
+            <img src="{{img_url feature_image size="m"}}" 
+                 srcset="{{img_url feature_image size="s"}} 300w,
+                         {{img_url feature_image size="m"}} 600w,
+                         {{img_url feature_image size="l"}} 900w"
+                 sizes="(max-width: 600px) 300px,
+                        (max-width: 900px) 600px,
+                        900px"
+                 alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" 
+                 loading="lazy" />
+            {{#if feature_image_caption}}
+                <figcaption>{{feature_image_caption}}</figcaption>
             {{/if}}
-            <div class="author-name">{{name}}</div>
-        </div>
-        {{/foreach}}
-    </div>
-        <span class="date">{{date format="MMMM D, YYYY"}}</span>
-            <div class="facebook-share-button-container">
-<div class="facebook-share-button-container">
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank" class="facebook-share-button">
-        <i class="fab fa-facebook-f"></i> Share on Facebook
-    </a>
-</div>
-        <h1>{{title}}</h1>
+        </figure>
+        {{/if}}
 
-    </header>
-
-    <div class="content">
-        {{content}}
-    </div>
-
-    {{!-- Email subscribe form at the bottom of the page --}}
- 
-    {{#if @labs.subscribers}}
-    <section class="subscribe-form">
-        <h3 class="subscribe-form-title">Subscribe to {{@site.title}}</h3>
-        <p>Get the latest posts delivered right to your inbox</p>
-        {{subscribe_form placeholder="youremail@example.com"}}
-    </section>
-    {{/if}}
-
-    <footer class="post-footer">
-
-    <div class="facebook-share-button-container">
-<div class="facebook-share-button-container">
-    <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank" class="facebook-share-button">
-        <i class="fab fa-facebook-f"></i> Share on Facebook
-    </a>
-</div>
-        <div class="authors">
+        <!-- Author Info, Blog Date, and Facebook Share -->
+        <div class="header-top-row">
+            <!-- Author Info -->
             {{#foreach authors}}
-            <a class="author-box" href="{{url}}">
+            <div class="author-info">
                 {{#if profile_image}}
                 <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
                 {{/if}}
-                <section class="author-box-content">
-                    <div class="author-box-label">Author</div>
-                    <h5 class="author-box-name">{{name}}</h5>
-                    {{#if bio}}
-                    <p>{{bio}}</p>
-                    {{else}}
-                    <p>Read more posts by this author.</p>
-                    {{/if}}
-                </section>
-            </a>
+                <div class="author-name">{{name}}</div>
+                <div class="date">{{date format="MMMM D, YYYY"}}</div>
+            </div>
             {{/foreach}}
+
+            <!-- Facebook Share Button -->
+            <div class="facebook-share-button-container">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank" class="facebook-share-button">
+                    <i class="fab fa-facebook-f"></i> Share on Facebook
+                </a>
+            </div>
         </div>
 
-    </footer>
+        <!-- Post Title -->
+        <h1>{{title}}</h1>
 
-    {{!--
-    <section class="post-full-comments">
-        If you want to embed comments, this is a good place to do it!
-    </section>
-    --}}
+        <!-- Blog Content -->
+        <div class="content-body">
+            {{content}}
+        </div>
+
+        {{#if @labs.subscribers}}
+        <section class="subscribe-form">
+            <h3 class="subscribe-form-title">Subscribe to {{@site.title}}</h3>
+            <p>Get the latest posts delivered right to your inbox</p>
+            {{subscribe_form placeholder="youremail@example.com"}}
+        </section>
+        {{/if}}
+
+        <footer class="post-footer">
+            <div class="facebook-share-button-container">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}" target="_blank" class="facebook-share-button">
+                    <i class="fab fa-facebook-f"></i> Share on Facebook
+                </a>
+            </div>
+            <div class="authors">
+                {{#foreach authors}}
+                <a class="author-box" href="{{url}}">
+                    {{#if profile_image}}
+                    <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+                    {{/if}}
+                    <section class="author-box-content">
+                        <div class="author-box-label">Author</div>
+                        <h5 class="author-box-name">{{name}}</h5>
+                        {{#if bio}}
+                        <p>{{bio}}</p>
+                        {{else}}
+                        <p>Read more posts by this author.</p>
+                        {{/if}}
+                    </section>
+                </a>
+                {{/foreach}}
+            </div>
+        </footer>
+
+    </div> <!-- End of .post-content -->
 
 </section>
 {{/post}}

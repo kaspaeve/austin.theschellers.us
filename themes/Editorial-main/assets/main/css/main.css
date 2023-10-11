@@ -3347,6 +3347,7 @@ figcaption {
 }
 
 .facebook-share-button-container {
+    display: inline-block;
     text-align: center;
     margin: 20px 0;
 }
@@ -3374,5 +3375,39 @@ figcaption {
   margin: 0 auto;
   font-weight:bold;
 }
+.post-layout {
+  display: flex;
+}
 
+.author-section {
+  flex: 0 0 20%; /* Take up 20% of the container width */
+  padding-right: 2rem; /* Add some spacing between the author info and the post content */
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  align-items: start; 
+}
+.post-content > h1 {
+  align-self: center;
+}
+.main.content {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  gap: 10px; /* Adds a bit of spacing between items */
+}
+
+.header-top-row {
+  display: flex;
+  align-items: center; /* Centers items vertically */
+  gap: 20px; /* Space between author info and share button */
+  width: 100%;
+  justify-content: space-between;
+}
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 /*# sourceMappingURL=main.css.map */
